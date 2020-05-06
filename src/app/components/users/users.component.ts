@@ -6,6 +6,17 @@ import { User } from '../../models/User';
   styleUrls: ['./users.component.css'],
 })
 export class UsersComponent implements OnInit {
+  user: User = {
+    firstName: '',
+    lastName: '',
+    age: null,
+    address: {
+      street: '',
+      city: '',
+      region: '',
+    },
+  };
+
   users: User[];
   showExtended: boolean = true;
   enableAdd: boolean = true;
@@ -43,14 +54,24 @@ export class UsersComponent implements OnInit {
       },
     ];
   }
-  addUser(user: User) {
-    this.users.push(user);
+  addUser() {
+    this.user.isActive = true;
+    this.user.registered = new Date();
+
+    this.users.unshift(this.user);
+    this.user = {
+      firstName: '',
+      lastName: '',
+      age: null,
+      address: {
+        street: '',
+        city: '',
+        region: '',
+      },
+    };
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log(e.target[0].value);
-  }
-  fireEvent(e) {
-    console.log(e.type);
+    console.log(this.user);
   }
 }

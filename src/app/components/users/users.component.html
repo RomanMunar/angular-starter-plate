@@ -8,6 +8,7 @@
     <div class="form-group">
       <Label>First Name</Label>
       <input
+        [(ngModel)]="user.firstName"
         type="text"
         class="form-control"
         name="firstName"
@@ -16,6 +17,7 @@
     <div class="form-group">
       <Label>Last Name</Label>
       <input
+        [(ngModel)]="user.lastName"
         type="text"
         class="form-control"
         name="lastName"
@@ -24,6 +26,7 @@
     <div class="form-group">
       <Label>Age</Label>
       <input
+        [(ngModel)]="user.age"
         type="number"
         class="form-control"
         name="age"
@@ -32,6 +35,7 @@
     <div class="form-group">
       <Label>Street Address</Label>
       <input
+        [(ngModel)]="user.address.street"
         type="text"
         class="form-control"
         name="street"
@@ -40,6 +44,7 @@
     <div class="form-group">
       <Label>City</Label>
       <input
+        [(ngModel)]="user.address.city"
         type="text"
         class="form-control"
         name="city"
@@ -48,6 +53,7 @@
     <div class="form-group">
       <Label>Region</Label>
       <input
+        [(ngModel)]="user.address.region"
         type="text"
         class="form-control"
         name="region"
@@ -55,9 +61,13 @@
     </div>
 
     <button
-      [disabled]="!enableAdd"
-      (click)="addUser({ firstName: 'Sam', lastName: 'Smith' })"
-      class="btn btn-block btn-success mb-3"
+      [disabled]="user.firstName == '' || user.lastName == ''"
+      (click)="addUser( )"
+      [ngClass]="
+        user.firstName == '' || user.lastName == ''
+          ? 'btn btn-block btn-light mb-3'
+          : 'btn btn-block btn-success mb-3'
+      "
     >
       Submit
     </button>

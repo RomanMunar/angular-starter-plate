@@ -22,6 +22,8 @@ export class PostFormComponent implements OnInit {
   showPostForm: boolean = true;
   @ViewChild('postForm') form: any;
   @Output() newPost: EventEmitter<Post> = new EventEmitter();
+  @Output() updatedPost: EventEmitter<Post> = new EventEmitter();
+  @Output() removedPost: EventEmitter<Post> = new EventEmitter();
   @Input() currentPost: Post;
   @Input() isEdit: boolean;
   constructor(private _postsService: PostsService) {}
@@ -35,5 +37,18 @@ export class PostFormComponent implements OnInit {
       .savePost({ title, body } as Post)
       .subscribe((post) => this.newPost.emit(post));
     this.form.reset();
+  }
+  updatePost() {
+    this._postsService.updatePost(this.currentPost).subscribe((post) => {
+      this.currentPost = {
+        id: 0,
+        title: '',
+        body: '',
+      };
+      this.isEdit = false;
+    });
+  }
+  removePost(post:Post){
+    this._postsService.removePost(post.id).subscribe(() => {})
   }
 }

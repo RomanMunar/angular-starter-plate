@@ -14,7 +14,7 @@ export class PostsComponent implements OnInit {
     title: '',
     body: '',
   };
-  isEdit:boolean = false
+  isEdit: boolean = false;
   constructor(private _postsService: PostsService) {}
 
   ngOnInit(): void {
@@ -28,5 +28,24 @@ export class PostsComponent implements OnInit {
   editPost(post: Post) {
     this.currentPost = post;
     this.isEdit = true;
+  }
+  onUpdatedPost(post: Post) {
+    this.posts.forEach((cur, index) => {
+      if (post.id == cur.id) {
+        this.posts.splice(index, 1);
+        this.posts.unshift(post);
+        this.isEdit = false;
+      }
+    });
+  }
+  removePost(post: Post) {
+    this._postsService.removePost(post.id).subscribe(() => {
+      this.posts.forEach((cur, index) => {
+        if (post.id == cur.id) {
+          this.posts.splice(index, 1);
+          this.isEdit = false;
+        }
+      });
+    });
   }
 }

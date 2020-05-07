@@ -1,77 +1,77 @@
-<div class="col-sm-3">
-  <button
-    (click)="showPostForm = !showPostForm"
-    class="btn btn-dark btn-block mb-2"
-  >
-    <h3>Add Post</h3>
-  </button>
+<button
+  (click)="showPostForm = !showPostForm"
+  class="btn btn-dark btn-block mb-2"
+>
+  <h3>Add Post</h3>
+</button>
 
-  <div class="card card-body" *ngIf="showPostForm">
-    <form #postForm="ngForm" (submit)="onSubmit(postForm)">
-      <div class="form-group">
-        <Label>Title</Label>
-        <input
-          [(ngModel)]="currentPost.title"
-          #postTitle="ngModel"
-          [ngClass]="{
-            'is-invalid': postTitle.errors && postTitle.touched
-          }"
-          type="text"
-          class="form-control"
-          name="title"
-          required
-          minlength="5"
-        />
-        <div [hidden]="!postTitle.errors?.required" class="invalid-feedback">
-          Title is required
-        </div>
-        <div [hidden]="!postTitle.errors?.minlength" class="invalid-feedback">
-          Title must be at least 5 characters
-        </div>
+<div class="card card-body" *ngIf="showPostForm">
+  <form #postForm="ngForm">
+    <div class="form-group">
+      <Label>Title</Label>
+      <input
+        [(ngModel)]="currentPost.title"
+        #postTitle="ngModel"
+        [ngClass]="{
+          'is-invalid': postTitle.errors && postTitle.touched
+        }"
+        type="text"
+        class="form-control"
+        name="title"
+        required
+        minlength="5"
+      />
+      <div [hidden]="!postTitle.errors?.required" class="invalid-feedback">
+        Title is required
       </div>
-      <div class="form-group">
-        <Label>Body</Label>
-        <input
-          [(ngModel)]="currentPost.body"
-          #postBody="ngModel"
-          [ngClass]="{
-            'is-invalid': postBody.errors && postBody.touched
-          }"
-          type="text"
-          class="form-control"
-          name="body"
-          required
-          minlength="2"
-        />
-        <div [hidden]="!postBody.errors?.required" class="invalid-feedback">
-          Body is required
-        </div>
-        <div [hidden]="!postBody.errors?.minlength" class="invalid-feedback">
-          Body must be at least 2 characters
-        </div>
+      <div [hidden]="!postTitle.errors?.minlength" class="invalid-feedback">
+        Title must be at least 5 characters
       </div>
-      <input [(ngModel)]="currentPost.id" type="hidden" name="id" />
-      <button
-        *ngIf="!isEdit"
-        [disabled]=""
-        [ngClass]="
-          currentPost.title == '' || currentPost.body == ''
-            ? 'btn btn-block btn-light mb-3'
-            : 'btn btn-block btn-success mb-3'
-        "
-      >
-        Add Post</button
-      ><button
-        *ngIf="isEdit"
-        [disabled]=""
-        [ngClass]="
-          currentPost.title == '' || currentPost.body == ''
-            ? 'btn btn-block btn-light mb-3'
-            : 'btn btn-block btn-warning mb-3'
-        "
-      >
-        Update Post
-      </button>
-    </form>
-  </div>
+    </div>
+    <div class="form-group">
+      <Label>Body</Label>
+      <input
+        [(ngModel)]="currentPost.body"
+        #postBody="ngModel"
+        [ngClass]="{
+          'is-invalid': postBody.errors && postBody.touched
+        }"
+        type="text"
+        class="form-control"
+        name="body"
+        required
+        minlength="2"
+      />
+      <div [hidden]="!postBody.errors?.required" class="invalid-feedback">
+        Body is required
+      </div>
+      <div [hidden]="!postBody.errors?.minlength" class="invalid-feedback">
+        Body must be at least 2 characters
+      </div>
+    </div>
+    <input [(ngModel)]="currentPost.id" type="hidden" name="id" />
+    <button
+      (click)="onSubmit(postForm)"
+      *ngIf="!isEdit"
+      [disabled]=""
+      [ngClass]="
+        currentPost.title == '' || currentPost.body == ''
+          ? 'btn btn-block btn-light mb-3'
+          : 'btn btn-block btn-success mb-3'
+      "
+    >
+      Add Post</button
+    ><button
+      (click)="updatePost()"
+      *ngIf="isEdit"
+      [disabled]=""
+      [ngClass]="
+        currentPost.title == '' || currentPost.body == ''
+          ? 'btn btn-block btn-light mb-3'
+          : 'btn btn-block btn-warning mb-3'
+      "
+    >
+      Update Post
+    </button>
+  </form>
 </div>

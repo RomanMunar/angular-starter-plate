@@ -1,11 +1,66 @@
 <section id="tabs" class="mb-5">
   <div class="container">
-    <h6 class="section-title h1">Angular</h6>
     <div class="row">
-      <div class="col-sm-3">
-        <nav>
+      <div class="col-sm-6">
+        <nav class="mb-4">
+          <h6 class="h4 text-light navbar-brand">
+            <i class="fab fa-angular"></i> Angular
+          </h6>
+          <!-- Button trigger modal -->
+          <button
+            type="button"
+            class="btn btn-outline-info"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            style="background-color: #181a1b;"
+          >
+            About This Project
+          </button>
+
+          <!-- Modal -->
+          <div
+            class="modal fade"
+            id="exampleModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content text-center">
+                <h5 class="h3 d-block py-3 bg-dark" id="exampleModalLabel">
+                  About
+                </h5>
+                <div class="modal-body bg-dark">
+                  <p>
+                    This is a sandbox project I've used to learn angular along
+                    with its functionalities, and built-in configurations
+                    <br />
+                  </p>
+                  <hr />
+                  Check it out on <br />
+                  <a
+                    type="button"
+                    href="#"
+                    class="btn btn-dark"
+                    style="background-color: #23272b;"
+                    ><i class="fab fa-github"></i> Github Repo</a
+                  >
+                </div>
+                <div class="modal-footer bg-dark">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    data-dismiss="modal"
+                  >
+                    <i class="fas fa-times"></i> Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
           <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-            <a
+            <div
               class="nav-item nav-link active"
               id="nav-home-tab"
               data-toggle="tab"
@@ -13,9 +68,10 @@
               role="tab"
               aria-controls="nav-home"
               aria-selected="true"
-              >Users</a
             >
-            <a
+              Users
+            </div>
+            <div
               class="nav-item nav-link"
               id="nav-profile-tab"
               data-toggle="tab"
@@ -23,8 +79,9 @@
               role="tab"
               aria-controls="nav-profile"
               aria-selected="false"
-              >Posts</a
             >
+              Posts
+            </div>
           </div>
         </nav>
       </div>

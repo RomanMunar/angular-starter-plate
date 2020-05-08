@@ -1,7 +1,6 @@
 section .section-title {
   text-align: center;
   color: #007b5e;
-  text-transform: uppercase;
 }
 #tabs {
   background: #343a40;

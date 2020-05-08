@@ -10,6 +10,7 @@ const httpOptions = {
 })
 export class PostsService {
   postsUrl: string = 'https://jsonplaceholder.typicode.com/posts';
+  usersUrl: string = 'https://jsonplaceholder.typicode.com/user';
   posts: Post[];
   constructor(private _http: HttpClient) {}
   getPosts(): Observable<Post[]> {

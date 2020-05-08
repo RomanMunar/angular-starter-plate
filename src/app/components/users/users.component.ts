@@ -17,7 +17,7 @@ export class UsersComponent implements OnInit {
   showExtended: boolean = true;
   enableAdd: boolean = true;
   loaded: boolean;
-  showUserForm: boolean = false;
+  showUserForm: boolean = true;
   @ViewChild('userForm') form: any;
   data: any;
 

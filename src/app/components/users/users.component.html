@@ -1,13 +1,18 @@
-<div class="row">
+<div class="row" style="width: 1100px;">
   <div class="col-sm-3">
     <button
       (click)="showUserForm = !showUserForm"
       class="btn btn-dark btn-block mb-2"
+      style="background-color: #181a1b;"
     >
       <h3>Add User</h3>
     </button>
 
-    <div class="card card-body" *ngIf="showUserForm">
+    <div
+      class="card card-body"
+      *ngIf="showUserForm"
+      style="background-color: #181a1b;"
+    >
       <form #userForm="ngForm" (submit)="onSubmit(userForm)">
         <div class="form-group">
           <Label>First Name</Label>
@@ -68,7 +73,9 @@
           <input
             [(ngModel)]="user.email"
             #userEmail="ngModel"
-            [ngClass]="{ 'is-invalid': userEmail.errors && userEmail.touched }"
+            [ngClass]="{
+              'is-invalid': userEmail.errors && userEmail.touched
+            }"
             type="text"
             class="form-control"
             name="email"
@@ -76,7 +83,7 @@
             pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
           />
           <div [hidden]="!userEmail.errors?.required" class="invalid-feedback">
-            Email name is required
+            Email is required
           </div>
           <div [hidden]="!userEmail.errors?.pattern" class="invalid-feedback">
             Email Invalid
@@ -98,7 +105,11 @@
   </div>
   <div class="col-sm-9">
     <ul class="list-unstyled">
-      <li class="card card-body mb-2" *ngFor="let user of users">
+      <li
+        class="card card-body mb-2"
+        *ngFor="let user of users"
+        style="background-color: #181a1b;"
+      >
         <h3>
           {{ user.firstName }} {{ user.lastName }}
           <button
@@ -110,9 +121,13 @@
             ></i>
           </button>
         </h3>
-        <ul class="list-group" *ngIf="user.hide">
-          <li class="list-group-item">Email : {{ user.email }}</li>
-          <li class="list-group-item">Joined: {{ user.registered | date }}</li>
+        <ul class="list-group" style="border-color: #fafafa;" *ngIf="user.hide">
+          <li class="list-group-item list-group-item-dark">
+            Email : {{ user.email }}
+          </li>
+          <li class="list-group-item list-group-item-dark">
+            Joined: {{ user.registered | date }}
+          </li>
         </ul>
       </li>
     </ul>
